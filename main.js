@@ -32,7 +32,7 @@ if (!accessToken) {
     console.error("Access token not found. Please log in.");
     // Consider redirecting the user back to the login page
     // window.location.href = '/login';
-    return; // Stop further execution
+    // return; // Stop further execution
 }
 
 const apiUrl = 'https://study.developerkwame.com/v1/user';
