@@ -44,7 +44,7 @@ let button = form.submit.addEventListener("click", (e) => {
     .then((response) => response.json())
     .then((data) => {
 
-      console.log(data);
+      // console.log(data);
       // code here //
       if (data.error) {
         alert("Error Password or Username"); /*displays error message*/
@@ -52,16 +52,16 @@ let button = form.submit.addEventListener("click", (e) => {
         // window.open(
         //   "target.html"
         // ); /*opens the target page while Id & password matches*/
-
-        const accessToken = data.access_token;
+        // console.log(data.data.access_token);
+        const accessToken = data.data.access_token;
 
             // Store the access token securely (e.g., in sessionStorage/localStorage)
         sessionStorage.setItem('accessToken', accessToken);
 
             // Redirect to the protected page
-        window.location.href = '/user.html';
-        
-        console.log('Successfully loggedin');
+        window.location.href = './user.html';
+
+        // console.log('Successfully loggedin');
       }
     })
     .catch((err) => {

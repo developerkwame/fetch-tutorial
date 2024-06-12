@@ -35,13 +35,14 @@ if (!accessToken) {
     // return; // Stop further execution
 }
 
+
 const apiUrl = 'https://study.developerkwame.com/v1/user';
 const bearerToken = accessToken; // Use the retrieved access token
 
+// console.log(bearerToken);
+// // const bearerToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0dWR5LmRldmVsb3Blcmt3YW1lLmNvbS8iLCJhdWQiOiJTdHVkeSBXaXRoIE1hdGVzIiwiaWF0IjoxNzE4MjMxNDU2LCJuYmYiOjE3MTgyMzE0NTYsInRpbWUiOjE3MTgyMzE0NTYsImV4cCI6MTcxODIzNTA1NiwidXNlciI6eyJ3b3Jrc3BhY2VfaWQiOiJXMDAwMDAyIiwidXNlcl9pZCI6IjAxSFo2MEozMkU1SlREWlc5WEhHTjU1TVBUIiwiZmlyc3RfbmFtZSI6Ikt3YW1lIiwibGFzdF9uYW1lIjoiT3RlbmciLCJlbWFpbCI6ImRldmVsb3Blcmt3YW1lQGdtYWlsLmNvbSIsIm1zaXNkbiI6IjIzMzI0MzcyMTAwMCIsInJvbGUiOiJ1c2VyIn19.nrXUc44Fr5o5nBgVVmBcedcEOGRBhNvzR1L5GUJrOxE';
 
-// const bearerToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL3N0dWR5LmRldmVsb3Blcmt3YW1lLmNvbS8iLCJhdWQiOiJTdHVkeSBXaXRoIE1hdGVzIiwiaWF0IjoxNzE4MjMxNDU2LCJuYmYiOjE3MTgyMzE0NTYsInRpbWUiOjE3MTgyMzE0NTYsImV4cCI6MTcxODIzNTA1NiwidXNlciI6eyJ3b3Jrc3BhY2VfaWQiOiJXMDAwMDAyIiwidXNlcl9pZCI6IjAxSFo2MEozMkU1SlREWlc5WEhHTjU1TVBUIiwiZmlyc3RfbmFtZSI6Ikt3YW1lIiwibGFzdF9uYW1lIjoiT3RlbmciLCJlbWFpbCI6ImRldmVsb3Blcmt3YW1lQGdtYWlsLmNvbSIsIm1zaXNkbiI6IjIzMzI0MzcyMTAwMCIsInJvbGUiOiJ1c2VyIn19.nrXUc44Fr5o5nBgVVmBcedcEOGRBhNvzR1L5GUJrOxE';
-
-// const apiUrl = 'https://study.developerkwame.com/v1/user';
+// // const apiUrl = 'https://study.developerkwame.com/v1/user';
 
 fetch(apiUrl, {
   method: 'GET',
@@ -50,20 +51,49 @@ fetch(apiUrl, {
     'Authorization': `Bearer ${bearerToken}`,
     'Content-Type': 'application/json' 
   }
-})
-.then(response => {
-  if (!response.ok) {
-    throw new Error('Network response was not ok.');
-  }
-  return response.json();
-})
-.then(data => {
+}).then((response) => response.json())
+.then((data) => {
+
   // console.log(data);
+  // code here //
+  if (data.error) {
+    // alert("Error Password or Username"); /*displays error message*/
+    throw new Error('Network response was not ok.');
+  } else {
+
   document.querySelector('body').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`
+
+    // window.open(
+    //   "target.html"
+    // ); /*opens the target page while Id & password matches*/
+    // console.log(data.data.access_token);
+    // const accessToken = data.data.access_token;
+
+    //     // Store the access token securely (e.g., in sessionStorage/localStorage)
+    // sessionStorage.setItem('accessToken', accessToken);
+
+    //     // Redirect to the protected page
+    // window.location.href = './user.html';
+
+    // console.log('Successfully loggedin');
+  }
 })
-.catch(error => {
-  console.error('Fetch Error:', error); 
+.catch((err) => {
+  console.log(err);
 });
+// .then(response => {
+//   if (!response.ok) {
+//     throw new Error('Network response was not ok.');
+//   }
+//   return response.json();
+// })
+// .then(data => {
+//   // console.log(data);
+//   document.querySelector('body').innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`
+// })
+// .catch(error => {
+//   console.error('Fetch Error:', error); 
+// });
 
 
 // function cors() {
